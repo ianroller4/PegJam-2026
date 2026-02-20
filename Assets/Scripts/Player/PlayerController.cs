@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     // --- Movement Variables
     [Header("Movement")]
     private Vector2 moveVel;
-    private bool facingRight;
+    public bool facingRight;
     private Vector2 input;
     private bool running;
 
@@ -49,6 +49,11 @@ public class PlayerController : MonoBehaviour
     private bool grounded;
     private bool headBump;
 
+    // --- Camera ---
+    [SerializeField] private GameObject cameraFollow;
+    private CameraFollowObject followObject;
+    private float fallSpeedYDampingChangeThreshold;
+
     private void Awake()
     {
         facingRight = true;
@@ -56,12 +61,30 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         grounded = false;
         headBump = false;
+
+        followObject = cameraFollow.GetComponent<CameraFollowObject>();
+
+        fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
     }
 
     private void Update()
     {
         CountTimers();
         JumpCheck();
+
+        // If we are falling past a certain speed threshold
+        if (rb.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManager.instance.isLerpingYDamping && !CameraManager.instance.lerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpYDamping(true);
+        }
+
+        // If we are standing still or moving up
+        if (rb.velocity.y >= 0f && !CameraManager.instance.isLerpingYDamping && CameraManager.instance.lerpedFromPlayerFalling)
+        {
+            CameraManager.instance.lerpedFromPlayerFalling = false;
+
+            CameraManager.instance.LerpYDamping(false);
+        }
     }
 
     private void FixedUpdate()
@@ -149,6 +172,7 @@ public class PlayerController : MonoBehaviour
             facingRight = false;
             transform.Rotate(0f, -180f, 0f);
         }
+        followObject.CallTurn();
     }
     #endregion
 
