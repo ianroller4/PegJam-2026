@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     // --- Movement Variables
     [Header("Movement")]
     private Vector2 moveVel;
-    private bool facingRight;
+    public bool facingRight;
     private Vector2 input;
     private bool running;
 
@@ -49,6 +49,11 @@ public class PlayerController : MonoBehaviour
     private bool grounded;
     private bool headBump;
 
+    // --- Camera ---
+    [SerializeField] private GameObject cameraFollow;
+    private CameraFollowObject followObject;
+    private float fallSpeedYDampingChangeThreshold;
+
     private void Awake()
     {
         facingRight = true;
@@ -56,12 +61,30 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         grounded = false;
         headBump = false;
+
+        followObject = cameraFollow.GetComponent<CameraFollowObject>();
+
+        fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
     }
 
     private void Update()
     {
         CountTimers();
         JumpCheck();
+
+        // If we are falling past a certain speed threshold
+        if (rb.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManager.instance.isLerpingYDamping && !CameraManager.instance.lerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpYDamping(true);
+        }
+
+        // If we are standing still or moving up
+        if (rb.velocity.y >= 0f && !CameraManager.instance.isLerpingYDamping && CameraManager.instance.lerpedFromPlayerFalling)
+        {
+            CameraManager.instance.lerpedFromPlayerFalling = false;
+
+            CameraManager.instance.LerpYDamping(false);
+        }
     }
 
     private void FixedUpdate()
@@ -149,6 +172,7 @@ public class PlayerController : MonoBehaviour
             facingRight = false;
             transform.Rotate(0f, -180f, 0f);
         }
+        followObject.CallTurn();
     }
     #endregion
 
@@ -200,15 +224,17 @@ public class PlayerController : MonoBehaviour
 
     private void JumpCheck()
     {
+        // Jump button pressed
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpBufferTimer = stats.jumpBufferTime;
             jumpReleaseDuringBuffer = false;
-            Debug.Log(jumpsUsed);
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        
+        // Jump button released
+        if (Input.GetKeyUp(KeyCode.Space))
         {
-            if (jumpBufferTimer > 0)
+            if (jumpBufferTimer > 0f)
             {
                 jumpReleaseDuringBuffer = true;
             }
@@ -230,6 +256,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // Start jump
         if (jumpBufferTimer > 0f && !jumping && (grounded || coyoteTimer > 0f))
         {
             InitiateJump(1);
@@ -240,11 +267,13 @@ public class PlayerController : MonoBehaviour
                 fastFallReleaseSpeed = verticalVel;
             }
         }
+        // Double Jump
         else if (jumpBufferTimer > 0f && jumping && jumpsUsed < stats.numberOfJumps)
         {
             fastFalling = false;
             InitiateJump(1);
         }
+        // Coyote jump
         else if (jumpBufferTimer > 0f && falling && jumpsUsed < stats.numberOfJumps - 1)
         {
             InitiateJump(2);
@@ -252,6 +281,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        // Landed
         if ((jumping || falling) && grounded && verticalVel <= 0f)
         {
             jumping = false;
@@ -279,15 +309,19 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        // Apply gravity while jumping
         if (jumping)
         {
+            // Check for head bump
             if (headBump)
             {
                 fastFalling = true;
             }
 
+            // Gravity on ascending
             if (verticalVel >= 0f)
             {
+                // Check if past apex threshould
                 apexPoint = Mathf.InverseLerp(stats.initialJumpVel, 0f, verticalVel);
 
                 if (apexPoint > stats.apexThreshold)
@@ -307,10 +341,14 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
-                            verticalVel = 0.01f;
+                            //verticalVel = 0.01f;
+                            jumping = false;
+                            falling = true;
+                            isPastApexThreshold = false;
                         }
                     }
                 }
+                // Gravity on ascending but not apex threshold
                 else
                 {
                     verticalVel += stats.gravity * Time.fixedDeltaTime;
@@ -321,6 +359,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        // Gravity on descending
         else if (!fastFalling)
         {
             verticalVel += stats.gravity * Time.fixedDeltaTime;
@@ -333,6 +372,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // Jump cut
         if (fastFalling)
         {
             if (fastFallTime >= stats.timeForUpCancel)
@@ -347,6 +387,7 @@ public class PlayerController : MonoBehaviour
             fastFallTime += Time.fixedDeltaTime;
         }
 
+        // Normal gravity no jump
         if (!grounded && !jumping)
         {
             if (!falling)
@@ -356,8 +397,8 @@ public class PlayerController : MonoBehaviour
 
             verticalVel += stats.gravity * Time.fixedDeltaTime;
         }
+        // Clamp fall speed
         verticalVel = Mathf.Clamp(verticalVel, -stats.maxFallSpeed, 50f);
-
         rb.velocity = new Vector2(rb.velocity.x, verticalVel);
     }
 
