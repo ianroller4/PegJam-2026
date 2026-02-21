@@ -40,7 +40,7 @@ public class GoblinFindScript : MonoBehaviour
             //Debug.Log(position);
             //Debug.Log(enemyLocation.transform.position);
             float distance = Vector3.Distance(enemyList[i].transform.position, position);
-            Debug.Log(distance);
+            //Debug.Log(distance);
             //Debug.Log($"Possible closer enemy {enemyLocation.position.x}and {enemyLocation.position.y}");
             if (distance < minDistance)
             {
