@@ -29,7 +29,6 @@ public class BomberGob : Gob
                 UpdateHeld();
                 break;
             case GobState.THROWN:
-                UpdateThrown();
                 break;
             case GobState.ATTACK:
                 UpdateAttack();
@@ -108,11 +107,6 @@ public class BomberGob : Gob
         force = force.normalized * 500f;
 
         rb.AddForce(force);
-    }
-
-    public override void UpdateThrown()
-    {
-
     }
 
     public override void EnterAttack()
