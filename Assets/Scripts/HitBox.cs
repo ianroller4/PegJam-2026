@@ -18,4 +18,9 @@ public class HitBox : MonoBehaviour
             }
         }
     }
+
+    private void Start()
+    {
+        Destroy(gameObject, 0.1f);   
+    }
 }

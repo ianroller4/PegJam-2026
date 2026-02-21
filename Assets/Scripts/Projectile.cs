@@ -5,6 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+
+    [SerializeField] private float damage = 2f;
     
     private Animator animator;
 
@@ -29,8 +31,16 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         animator.SetBool("hit", true);
-        // deal damage
-        Destroy(this.gameObject, 0.2f);
+        if (collision != null)
+        {
+            GameObject hitObject = collision.gameObject;
+
+            if (hitObject.GetComponent<Health>() != null)
+            {
+                hitObject.GetComponent<Health>().TakeDamage(damage);
+            }
+        }
+        Destroy(gameObject, 0.2f);
     }
 
     private void Move()

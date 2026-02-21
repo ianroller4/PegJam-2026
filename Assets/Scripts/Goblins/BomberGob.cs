@@ -8,6 +8,8 @@ public class BomberGob : Gob
     private CircleCollider2D circleCollider;
     private BoxCollider2D boxCollider;
 
+    [SerializeField] private float range = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,9 +34,6 @@ public class BomberGob : Gob
                 break;
             case GobState.ATTACK:
                 UpdateAttack();
-                break;
-            case GobState.DEATH:
-                UpdateDeath();
                 break;
         }
     }
@@ -115,16 +114,6 @@ public class BomberGob : Gob
     }
 
     public override void UpdateAttack()
-    {
-
-    }
-
-    public override void EnterDeath()
-    {
-        state = GobState.DEATH;
-    }
-
-    public override void UpdateDeath()
     {
 
     }

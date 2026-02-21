@@ -15,6 +15,8 @@ public class MagicGob : Gob
 
     public bool facingRight = true;
 
+    [SerializeField] private float range = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,9 +41,6 @@ public class MagicGob : Gob
                 break;
             case GobState.ATTACK:
                 UpdateAttack();
-                break;
-            case GobState.DEATH:
-                UpdateDeath();
                 break;
         }
     }
@@ -143,16 +142,6 @@ public class MagicGob : Gob
         {
             proj.transform.position = transform.position + Vector3.left;
         }
-
-    }
-
-    public override void EnterDeath()
-    {
-        state = GobState.DEATH;
-    }
-
-    public override void UpdateDeath()
-    {
 
     }
 
