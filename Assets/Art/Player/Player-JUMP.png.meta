@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd42e513f03cd244399d4652091bd13e
+guid: a8393d3d68d51c545a03f80285814cc2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BomberGob-IDLE_0
+      name: Player-JUMP_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 200
-        height: 144
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e8e1c8e611d888498a9ae992873383b
-      internalID: -1026086206
+      spriteID: b0106ceaadaa71246b00bcab9524f0d0
+      internalID: -792510878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BomberGob-IDLE_1
+      name: Player-JUMP_1
       rect:
         serializedVersion: 2
-        x: 200
+        x: 48
         y: 0
-        width: 200
-        height: 144
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b51e329a82af963459c53a417cfe2ffc
-      internalID: -343727487
+      spriteID: b8e417bcfd84ee54d9d229c06ff33b56
+      internalID: 404165983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BomberGob-IDLE_2
+      name: Player-JUMP_2
       rect:
         serializedVersion: 2
-        x: 400
+        x: 96
         y: 0
-        width: 200
-        height: 144
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f723b705219ea17469ecf578f961d621
-      internalID: 376640800
+      spriteID: 5de7f1044e490dd48817809b4794ff85
+      internalID: 2066585617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BomberGob-IDLE_3
+      name: Player-JUMP_3
       rect:
         serializedVersion: 2
-        x: 600
+        x: 144
         y: 0
-        width: 200
-        height: 144
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,8 +187,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f23773106d816bf44b48b8e1f02c6f6a
-      internalID: -1885757106
+      spriteID: b6656be5781563d4caeafff66a3063a1
+      internalID: -1385561806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player-JUMP_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea83609e7b765ce4d9a14b8e3cfa6bfa
+      internalID: 2021538291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player-JUMP_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68cb43a984beacd4b91eda13d9b3c6e1
+      internalID: -519278004
       vertices: []
       indices: 
       edges: []
@@ -204,10 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BomberGob-IDLE_0: -1026086206
-      BomberGob-IDLE_1: -343727487
-      BomberGob-IDLE_2: 376640800
-      BomberGob-IDLE_3: -1885757106
+      Player-JUMP_0: -792510878
+      Player-JUMP_1: 404165983
+      Player-JUMP_2: 2066585617
+      Player-JUMP_3: -1385561806
+      Player-JUMP_4: 2021538291
+      Player-JUMP_5: -519278004
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6486062399267725127}
   - component: {fileID: 2323398121896068761}
   - component: {fileID: 4774811218489329516}
+  - component: {fileID: 6789247078411712203}
+  - component: {fileID: 4731915925378810254}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -153,6 +155,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6789247078411712203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103505168224462289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f86f3b6e950f0c4bb42cfa33c4b1229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  daggerGobs: []
+  magicGobs: []
+  tankGobs: []
+  bomberGobs: []
+  activeGob: 0
+--- !u!114 &4731915925378810254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103505168224462289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59018b731419cff48ba053853a71820e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &624178520956640294
 GameObject:
   m_ObjectHideFlags: 0
