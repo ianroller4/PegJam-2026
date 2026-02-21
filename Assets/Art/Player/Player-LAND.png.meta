@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd42e513f03cd244399d4652091bd13e
+guid: ee014c94badad204dbc13c7c4f5e3e26
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BomberGob-IDLE_0
+      name: Player-LAND_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 200
-        height: 144
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e8e1c8e611d888498a9ae992873383b
-      internalID: -1026086206
+      spriteID: a88c1c4bfbbc9fd48a6e30172969b80f
+      internalID: -1687448337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BomberGob-IDLE_1
+      name: Player-LAND_1
       rect:
         serializedVersion: 2
-        x: 200
+        x: 48
         y: 0
-        width: 200
-        height: 144
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b51e329a82af963459c53a417cfe2ffc
-      internalID: -343727487
+      spriteID: f9de2caf77fd9d6488ff006d22998628
+      internalID: -1432680370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BomberGob-IDLE_2
+      name: Player-LAND_2
       rect:
         serializedVersion: 2
-        x: 400
+        x: 96
         y: 0
-        width: 200
-        height: 144
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f723b705219ea17469ecf578f961d621
-      internalID: 376640800
+      spriteID: 9efb811a31901344abf4eaeafae68fc6
+      internalID: 329954315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BomberGob-IDLE_3
+      name: Player-LAND_3
       rect:
         serializedVersion: 2
-        x: 600
+        x: 144
         y: 0
-        width: 200
-        height: 144
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,8 +187,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f23773106d816bf44b48b8e1f02c6f6a
-      internalID: -1885757106
+      spriteID: 66582603bea75cd4ca235f4a15b41a45
+      internalID: 816164504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player-LAND_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdee9f3789b14f4459e47eef7da1a28c
+      internalID: -1051373535
       vertices: []
       indices: 
       edges: []
@@ -204,10 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BomberGob-IDLE_0: -1026086206
-      BomberGob-IDLE_1: -343727487
-      BomberGob-IDLE_2: 376640800
-      BomberGob-IDLE_3: -1885757106
+      Player-LAND_0: -1687448337
+      Player-LAND_1: -1432680370
+      Player-LAND_2: 329954315
+      Player-LAND_3: 816164504
+      Player-LAND_4: -1051373535
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
