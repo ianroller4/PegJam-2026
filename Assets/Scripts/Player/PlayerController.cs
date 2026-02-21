@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
     private CameraFollowObject followObject;
     private float fallSpeedYDampingChangeThreshold;
 
+    // --- Animation ---
+    private Animator animator;
+
     private void Awake()
     {
         facingRight = true;
@@ -65,12 +68,14 @@ public class PlayerController : MonoBehaviour
         followObject = cameraFollow.GetComponent<CameraFollowObject>();
 
         fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         CountTimers();
         JumpCheck();
+        UpdateAnimation();
 
         // If we are falling past a certain speed threshold
         if (rb.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManager.instance.isLerpingYDamping && !CameraManager.instance.lerpedFromPlayerFalling)
@@ -101,6 +106,20 @@ public class PlayerController : MonoBehaviour
             Move(stats.airAcc, stats.airDeAcc);
         }
     }
+
+    #region Animation
+    private void UpdateAnimation()
+    {
+        if (input.x == 0f && grounded)
+        {
+            animator.SetBool("run", false);
+        }
+        else if (input.x != 0f && grounded)
+        {
+            animator.SetBool("run", true);
+        }
+    }
+    #endregion
 
     #region Move
 
