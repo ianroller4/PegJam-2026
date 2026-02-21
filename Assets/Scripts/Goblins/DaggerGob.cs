@@ -9,6 +9,15 @@ public class DaggerGob : Gob
     private CircleCollider2D circleCollider;
     private BoxCollider2D boxCollider;
 
+    [SerializeField] private GameObject hitBox;
+
+    private float attackTimer = 0f;
+    [SerializeField] private float attackTimerMax = 1f;
+
+    public bool facingRight = true;
+
+    [SerializeField] private float range = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,9 +42,6 @@ public class DaggerGob : Gob
                 break;
             case GobState.ATTACK:
                 UpdateAttack();
-                break;
-            case GobState.DEATH:
-                UpdateDeath();
                 break;
         }
     }
@@ -117,16 +123,30 @@ public class DaggerGob : Gob
 
     public override void UpdateAttack()
     {
-
+        attackTimer += Time.deltaTime;
+        if (attackTimer > attackTimerMax)
+        {
+            attackTimer -= attackTimerMax;
+            Attack();
+        }
     }
 
-    public override void EnterDeath()
+    private void Attack()
     {
-        state = GobState.DEATH;
+        GameObject hB = Instantiate(hitBox);
+        if (facingRight)
+        {
+            hB.transform.position = transform.position + Vector3.right;
+        }
+        else
+        {
+            hB.transform.position = transform.position + Vector3.left;
+        }
     }
 
-    public override void UpdateDeath()
+    public void Flip()
     {
-
+        facingRight = !facingRight;
+        transform.Rotate(0f, 180f, 0f);
     }
 }

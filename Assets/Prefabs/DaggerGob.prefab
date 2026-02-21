@@ -231,3 +231,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   player: {fileID: 0}
+  hitBox: {fileID: 1232073207929083570, guid: 2d4f7f594871e2748b828532588aabdf, type: 3}
+  attackTimerMax: 1
+  facingRight: 1

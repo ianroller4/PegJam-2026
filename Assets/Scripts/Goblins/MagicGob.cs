@@ -8,6 +8,15 @@ public class MagicGob : Gob
     private CircleCollider2D circleCollider;
     private BoxCollider2D boxCollider;
 
+    [SerializeField] private GameObject projectile;
+
+    private float attackTimer = 0f;
+    [SerializeField] private float attackTimerMax = 1f;
+
+    public bool facingRight = true;
+
+    [SerializeField] private float range = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,13 +38,9 @@ public class MagicGob : Gob
                 UpdateHeld();
                 break;
             case GobState.THROWN:
-                UpdateThrown();
                 break;
             case GobState.ATTACK:
                 UpdateAttack();
-                break;
-            case GobState.DEATH:
-                UpdateDeath();
                 break;
         }
     }
@@ -110,11 +115,6 @@ public class MagicGob : Gob
         rb.AddForce(force);
     }
 
-    public override void UpdateThrown()
-    {
-
-    }
-
     public override void EnterAttack()
     {
         state = GobState.ATTACK;
@@ -122,16 +122,32 @@ public class MagicGob : Gob
 
     public override void UpdateAttack()
     {
+        attackTimer += Time.deltaTime;
+        if (attackTimer > attackTimerMax)
+        {
+            attackTimer -= attackTimerMax;
+            Shoot();
+        }
+    }
+
+    private void Shoot()
+    {
+        GameObject proj = Instantiate(projectile);
+        proj.GetComponent<Projectile>().right = facingRight;
+        if (facingRight)
+        {
+            proj.transform.position = transform.position + Vector3.right;
+        }
+        else
+        {
+            proj.transform.position = transform.position + Vector3.left;
+        }
 
     }
 
-    public override void EnterDeath()
+    public void Flip()
     {
-        state = GobState.DEATH;
-    }
-
-    public override void UpdateDeath()
-    {
-
+        facingRight = !facingRight;
+        transform.Rotate(0f, 180f, 0f);
     }
 }

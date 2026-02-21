@@ -9,8 +9,7 @@ public class Gob : MonoBehaviour
         IDLE,
         HELD,
         THROWN,
-        ATTACK,
-        DEATH
+        ATTACK
     }
 
     public GobState state = GobState.IDLE;
@@ -32,8 +31,4 @@ public class Gob : MonoBehaviour
     public virtual void EnterAttack() {}
 
     public virtual void UpdateAttack() {}
-
-    public virtual void EnterDeath() {}
-
-    public virtual void UpdateDeath() {}
 }
