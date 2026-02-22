@@ -764,7 +764,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   jumpForce: 6
+  detectRadius: 3
+  chaseStopDistance: 4
+  attackRange: 2
   groundCheck: {fileID: 639801890}
+  target: {fileID: 0}
 --- !u!1001 &964070284
 PrefabInstance:
   m_ObjectHideFlags: 0
