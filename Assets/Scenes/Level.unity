@@ -10394,6 +10394,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3130107733297295315, guid: a2ea546b81d0eab43ab77dc0c12a872b, type: 3}
   m_PrefabInstance: {fileID: 1864152381}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1934224512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1699210104345906513, guid: 6f07f4ea80c9cd5418f72fc23c281c39, type: 3}
+  m_PrefabInstance: {fileID: 1781904837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1962870295
 GameObject:
   m_ObjectHideFlags: 3
@@ -10623,6 +10628,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 884541112}
+  - {fileID: 2124717965}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10858,6 +10864,101 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2560864854955867478, guid: 54c487f1a15abc54e8beba0e987b5ff8, type: 3}
   m_PrefabInstance: {fileID: 2108324333}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2124717964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2124717965}
+  - component: {fileID: 2124717968}
+  - component: {fileID: 2124717967}
+  - component: {fileID: 2124717966}
+  m_Layer: 5
+  m_Name: Heart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2124717965
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124717964}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1984672555}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -150}
+  m_SizeDelta: {x: 103.125, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2124717966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124717964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b0c87c7be0eff4188d47f6ca7b55d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDisplayedImage: {fileID: 2124717967}
+  fullHealth: {fileID: -1640499043, guid: c8f6a9c46fe39b941a9aa76504ff1b2c, type: 3}
+  ThirdHealth: {fileID: 553781972, guid: c8f6a9c46fe39b941a9aa76504ff1b2c, type: 3}
+  SecondHealth: {fileID: -1091741458, guid: c8f6a9c46fe39b941a9aa76504ff1b2c, type: 3}
+  FirstHealth: {fileID: -1024928245, guid: c8f6a9c46fe39b941a9aa76504ff1b2c, type: 3}
+  NoHealth: {fileID: -656558996, guid: c8f6a9c46fe39b941a9aa76504ff1b2c, type: 3}
+  playerHealth: {fileID: 1934224512}
+--- !u!114 &2124717967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124717964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1640499043, guid: c8f6a9c46fe39b941a9aa76504ff1b2c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2124717968
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124717964}
+  m_CullTransparentMesh: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
