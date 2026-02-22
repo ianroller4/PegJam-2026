@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ThrowGob : MonoBehaviour
 {
     private Sack sack;
+    public CurrentGobHUD HUDGobDisplay;
 
     private bool throwing = false;
     private bool canceledThrow = false;
@@ -77,6 +79,7 @@ public class ThrowGob : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             sack.SwitchGob(true);
+            HUDGobDisplay.GetCurrentGob();
         } else if (Input.GetKeyDown(KeyCode.Q))
         {
             sack.SwitchGob(false);
