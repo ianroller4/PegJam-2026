@@ -17,6 +17,12 @@ public class MagicGob : Gob
 
     [SerializeField] private float range = 1f;
 
+    // --- Target ---
+    private GameObject target;
+
+    public GobManager gobManager;
+    private EnemyManager enemyManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +30,11 @@ public class MagicGob : Gob
         rb = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+
+        enemyManager = GameObject.FindObjectOfType<EnemyManager>();
+        gobManager = GameObject.FindObjectOfType<GobManager>();
+
+        gobManager.AddGob(this);
     }
 
     // Update is called once per frame
@@ -80,7 +91,29 @@ public class MagicGob : Gob
 
     public override void UpdateIdle()
     {
-
+        for (int i = 0; i < enemyManager.enemies.Count; i++)
+        {
+            if (Vector2.Distance(enemyManager.enemies[i].transform.position, transform.position) <= range)
+            {
+                target = enemyManager.enemies[i].gameObject;
+                if (target.transform.position.x < transform.position.x)
+                {
+                    if (facingRight)
+                    {
+                        Flip();
+                    }
+                }
+                if (target.transform.position.x > transform.position.x)
+                {
+                    if (!facingRight)
+                    {
+                        Flip();
+                    }
+                }
+                EnterAttack();
+                break;
+            }
+        }
     }
 
     public override void EnterHeld()
@@ -122,11 +155,19 @@ public class MagicGob : Gob
 
     public override void UpdateAttack()
     {
+        if (target == null || Vector2.Distance(target.transform.position, transform.position) > range)
+        {
+            EnterIdle();
+        }
         attackTimer += Time.deltaTime;
         if (attackTimer > attackTimerMax)
         {
             attackTimer -= attackTimerMax;
             Shoot();
+        }
+        if (target == null)
+        {
+            EnterIdle();
         }
     }
 
@@ -136,13 +177,18 @@ public class MagicGob : Gob
         proj.GetComponent<Projectile>().right = facingRight;
         if (facingRight)
         {
-            proj.transform.position = transform.position + Vector3.right;
+            proj.transform.position = transform.position;
         }
         else
         {
-            proj.transform.position = transform.position + Vector3.left;
+            proj.transform.position = transform.position;
         }
 
+    }
+
+    public void Death()
+    {
+        gobManager.RemoveGob(this);
     }
 
     public void Flip()

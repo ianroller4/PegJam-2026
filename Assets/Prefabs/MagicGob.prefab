@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3623540887171814794}
   - component: {fileID: 5626130884158200187}
   - component: {fileID: 963383486804930131}
+  - component: {fileID: 4549312306119949720}
   m_Layer: 0
   m_Name: MagicGob
   m_TagString: Untagged
@@ -232,3 +233,21 @@ MonoBehaviour:
   state: 0
   player: {fileID: 0}
   projectile: {fileID: 7047701486859484088, guid: 0be8e45a93d548d4ead9812707097cbe, type: 3}
+  attackTimerMax: 1
+  facingRight: 1
+  range: 1
+--- !u!114 &4549312306119949720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454283501954471086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33eedb43eed6164f8752ddf198c9dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_HP: 3
+  spriteRenderer: {fileID: 0}
+  player: {fileID: 0}

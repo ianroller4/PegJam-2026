@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6151760097862517427}
   - component: {fileID: 5858468930943307917}
   - component: {fileID: 5343479296238465187}
+  - component: {fileID: 7851286504221943166}
   m_Layer: 0
   m_Name: TankGob
   m_TagString: Untagged
@@ -234,3 +235,19 @@ MonoBehaviour:
   hitBox: {fileID: 1232073207929083570, guid: 2d4f7f594871e2748b828532588aabdf, type: 3}
   attackTimerMax: 1
   facingRight: 1
+  range: 1
+--- !u!114 &7851286504221943166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5009831210330886394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33eedb43eed6164f8752ddf198c9dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_HP: 3
+  spriteRenderer: {fileID: 0}
+  player: {fileID: 0}

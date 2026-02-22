@@ -342,6 +342,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_HP: 5
+  spriteRenderer: {fileID: 0}
+  player: {fileID: 103505168224462289}
 --- !u!1 &5078810515924624409
 GameObject:
   m_ObjectHideFlags: 0

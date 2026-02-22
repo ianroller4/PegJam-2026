@@ -10,6 +10,12 @@ public class BomberGob : Gob
 
     [SerializeField] private float range = 1f;
 
+    // --- Target ---
+    private GameObject target;
+
+    public GobManager gobManager;
+    private EnemyManager enemyManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +23,11 @@ public class BomberGob : Gob
         rb = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+
+        enemyManager = GameObject.FindObjectOfType<EnemyManager>();
+        gobManager = GameObject.FindObjectOfType<GobManager>();
+
+        gobManager.AddGob(this);
     }
 
     // Update is called once per frame
@@ -73,7 +84,15 @@ public class BomberGob : Gob
 
     public override void UpdateIdle()
     {
-
+        for (int i = 0; i < enemyManager.enemies.Count; i++)
+        {
+            if (Vector2.Distance(enemyManager.enemies[i].transform.position, transform.position) <= range)
+            {
+                target = enemyManager.enemies[i].gameObject;
+                EnterAttack();
+                break;
+            }
+        }
     }
 
     public override void EnterHeld()
@@ -116,5 +135,10 @@ public class BomberGob : Gob
     public override void UpdateAttack()
     {
 
+    }
+
+    public void Death()
+    {
+        gobManager.RemoveGob(this);
     }
 }
