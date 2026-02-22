@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    private float currHP;
+    public float currHP;
     [SerializeField] private float MAX_HP = 3f;
 
     private SpriteRenderer spriteRenderer;

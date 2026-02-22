@@ -236,6 +236,7 @@ MonoBehaviour:
   attackTimerMax: 1
   facingRight: 1
   range: 1
+  gobManager: {fileID: 0}
 --- !u!114 &7851286504221943166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +249,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33eedb43eed6164f8752ddf198c9dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MAX_HP: 3
-  spriteRenderer: {fileID: 0}
+  MAX_HP: 5
   player: {fileID: 0}

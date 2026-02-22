@@ -118,20 +118,16 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("run", true);
         }
-        else if (!grounded && jumping)
+        else if (verticalVel > 0f)
         {
             animator.SetBool("jump", true);
+            animator.SetBool("run", false);
         }
-        else if (!grounded && falling)
+        else if (!grounded && verticalVel <= 0f)
         {
             animator.SetBool("fall", true);
             animator.SetBool("jump", false);
-        } else if ((jumping || falling) && grounded && verticalVel <= 0f)
-        {
-            Debug.Log("here");
-            animator.SetBool("fall", false);
-            animator.SetBool("landed", true);
-        }
+        } 
     }
     #endregion
 
@@ -323,7 +319,7 @@ public class PlayerController : MonoBehaviour
             fastFallTime = 0f;
             isPastApexThreshold = false;
             jumpsUsed = 0;
-            
+            animator.SetBool("fall", false);
             verticalVel = 0f;
         }
     }
