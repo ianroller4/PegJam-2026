@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     private float currHP;
     [SerializeField] private float MAX_HP = 3f;
 
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
     [SerializeField] private GameObject player;
 
@@ -17,9 +17,13 @@ public class Health : MonoBehaviour
     void Start()
     {
         currHP = MAX_HP;
-        if (spriteRenderer == null )
+        if (player == null )
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+        else
+        {
+            spriteRenderer = player.GetComponent<SpriteRenderer>();
         }
     }
 
@@ -30,12 +34,21 @@ public class Health : MonoBehaviour
         if (currHP > 0)
         {
             // Damage Flicker
+            StartCoroutine(DamageFlicker());
         }
 
         if (currHP <= 0)
         {
             DeathFromDamage();
         }
+    }
+
+    private IEnumerator DamageFlicker()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+
+        spriteRenderer.color = Color.white;
     }
 
     public void DeathFromDamage()

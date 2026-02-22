@@ -83,7 +83,12 @@ public class EnemyNew : MonoBehaviour
         {
             for (int i = 0; i < gobManager.gobs.Count; i++)
             {
-                if (Vector3.Distance(gobManager.gobs[i].transform.position, transform.position) < range)
+                Vector3 gobPos = gobManager.gobs[i].transform.position;
+                if (gobManager.gobs[i].GetComponent<BomberGob>() != null)
+                {
+                    gobPos -= new Vector3(0f, -0.5f, 0f);
+                }
+                if (Vector3.Distance(gobPos, transform.position) < range)
                 {
                     target = gobManager.gobs[i].gameObject;
                     EnterAttack();
@@ -130,7 +135,6 @@ public class EnemyNew : MonoBehaviour
 
     private void UpdateAttack()
     {
-        Debug.Log(target);
         if (target == null || Vector2.Distance(target.transform.position, transform.position) > range)
         {
             EnterPatrol();

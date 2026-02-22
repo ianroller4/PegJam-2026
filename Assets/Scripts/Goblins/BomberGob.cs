@@ -8,13 +8,17 @@ public class BomberGob : Gob
     private CircleCollider2D circleCollider;
     private BoxCollider2D boxCollider;
 
-    [SerializeField] private float range = 1f;
+    [SerializeField] private float range = 2f;
 
     // --- Target ---
     private GameObject target;
 
     public GobManager gobManager;
     private EnemyManager enemyManager;
+
+    [SerializeField] private GameObject boom;
+
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +32,8 @@ public class BomberGob : Gob
         gobManager = GameObject.FindObjectOfType<GobManager>();
 
         gobManager.AddGob(this);
+
+        animator = GetComponent<Animator>();    
     }
 
     // Update is called once per frame
@@ -42,9 +48,6 @@ public class BomberGob : Gob
                 UpdateHeld();
                 break;
             case GobState.THROWN:
-                break;
-            case GobState.ATTACK:
-                UpdateAttack();
                 break;
         }
     }
@@ -86,7 +89,8 @@ public class BomberGob : Gob
     {
         for (int i = 0; i < enemyManager.enemies.Count; i++)
         {
-            if (Vector2.Distance(enemyManager.enemies[i].transform.position, transform.position) <= range)
+            Vector3 myPosition = transform.position;
+            if (Vector2.Distance(enemyManager.enemies[i].transform.position, myPosition) <= range)
             {
                 target = enemyManager.enemies[i].gameObject;
                 EnterAttack();
@@ -130,15 +134,13 @@ public class BomberGob : Gob
     public override void EnterAttack()
     {
         state = GobState.ATTACK;
-    }
-
-    public override void UpdateAttack()
-    {
-
+        animator.SetBool("explode", true);
+        Death();
     }
 
     public void Death()
     {
         gobManager.RemoveGob(this);
+        Destroy(gameObject, 1.1f);
     }
 }
