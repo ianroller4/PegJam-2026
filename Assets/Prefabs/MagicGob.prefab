@@ -236,7 +236,7 @@ MonoBehaviour:
   projectile: {fileID: 7047701486859484088, guid: 0be8e45a93d548d4ead9812707097cbe, type: 3}
   attackTimerMax: 1
   facingRight: 1
-  range: 3
+  range: 5
   gobManager: {fileID: 0}
   wee: {fileID: 8300000, guid: e84a24d5518d3f140be3e536913f7d47, type: 3}
   shoot: {fileID: 8300000, guid: e93e8bcc8e6154046849eab76b210414, type: 3}

@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
         CountTimers();
         JumpCheck();
         UpdateAnimation();
+        feetCollider.gameObject.transform.position = transform.position;
 
         // If we are falling past a certain speed threshold
         if (rb.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManager.instance.isLerpingYDamping && !CameraManager.instance.lerpedFromPlayerFalling)
@@ -235,7 +236,6 @@ public class PlayerController : MonoBehaviour
         Vector2 boxCastSize = new Vector2(feetCollider.bounds.size.x * stats.headWidth, stats.headDetectRayLength);
 
         headHit = Physics2D.BoxCast(boxCastOrigin, boxCastSize, 0f, Vector2.up, stats.headDetectRayLength, stats.groundLayer);
-
         if (headHit.collider != null)
         {
             headBump = true;

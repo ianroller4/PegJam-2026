@@ -13,7 +13,8 @@ public class Teleporter : MonoBehaviour
             GameObject go = collision.gameObject;
             if (go.name == "Body")
             {
-                go = go.transform.parent.transform.parent.gameObject;
+                go = go.transform.parent.gameObject;
+                go = go.transform.parent.gameObject;
             }
             if (go != null)
             {

@@ -167,6 +167,23 @@ public class MagicGob : Gob
         {
             EnterIdle();
         }
+        if (target != null)
+        {
+            if (target.transform.position.x < transform.position.x)
+            {
+                if (facingRight)
+                {
+                    Flip();
+                }
+            }
+            if (target.transform.position.x > transform.position.x)
+            {
+                if (!facingRight)
+                {
+                    Flip();
+                }
+            }
+        }
         attackTimer += Time.deltaTime;
         if (attackTimer > attackTimerMax)
         {
