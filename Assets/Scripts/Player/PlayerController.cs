@@ -118,6 +118,20 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("run", true);
         }
+        else if (!grounded && jumping)
+        {
+            animator.SetBool("jump", true);
+        }
+        else if (!grounded && falling)
+        {
+            animator.SetBool("fall", true);
+            animator.SetBool("jump", false);
+        } else if ((jumping || falling) && grounded && verticalVel <= 0f)
+        {
+            Debug.Log("here");
+            animator.SetBool("fall", false);
+            animator.SetBool("landed", true);
+        }
     }
     #endregion
 

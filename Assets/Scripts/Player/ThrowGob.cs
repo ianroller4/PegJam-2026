@@ -83,6 +83,7 @@ public class ThrowGob : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.Q))
         {
             sack.SwitchGob(false);
+            HUDGobDisplay.GetCurrentGob();
         }
     }
 }

@@ -29,7 +29,6 @@ public class CurrentGobHUD : MonoBehaviour
     public void GetCurrentGob()
     {
         currentGob = sack.activeGob;
-        Debug.Log(currentGob);
         DisplayCurrentGob();
     }
 
