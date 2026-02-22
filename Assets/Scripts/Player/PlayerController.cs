@@ -57,6 +57,10 @@ public class PlayerController : MonoBehaviour
     // --- Animation ---
     private Animator animator;
 
+    // --- Sound ---
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip run;
+
     private void Awake()
     {
         facingRight = true;
@@ -69,6 +73,7 @@ public class PlayerController : MonoBehaviour
 
         fallSpeedYDampingChangeThreshold = CameraManager.instance.fallSpeedYDampingChangeThreshold;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -90,6 +95,14 @@ public class PlayerController : MonoBehaviour
 
             CameraManager.instance.LerpYDamping(false);
         }
+        if (input.x != 0f && grounded)
+        {
+            PlaySound(run);
+        }
+        else
+        {
+            audioSource.Stop();
+        }
     }
 
     private void FixedUpdate()
@@ -104,6 +117,15 @@ public class PlayerController : MonoBehaviour
         else
         {
             Move(stats.airAcc, stats.airDeAcc);
+        }
+    }
+
+    private void PlaySound(AudioClip c)
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = c;
+            audioSource.Play();
         }
     }
 

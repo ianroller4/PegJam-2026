@@ -20,6 +20,10 @@ public class BomberGob : Gob
 
     private Animator animator;
 
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip wee;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +37,8 @@ public class BomberGob : Gob
 
         gobManager.AddGob(this);
 
-        animator = GetComponent<Animator>();    
+        animator = GetComponent<Animator>();  
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -129,6 +134,8 @@ public class BomberGob : Gob
         force = force.normalized * 500f;
 
         rb.AddForce(force);
+        audioSource.clip = wee;
+        audioSource.Play();
     }
 
     public override void EnterAttack()

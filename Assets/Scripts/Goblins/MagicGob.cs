@@ -23,6 +23,11 @@ public class MagicGob : Gob
     public GobManager gobManager;
     private EnemyManager enemyManager;
 
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip wee;
+    [SerializeField] private AudioClip shoot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +40,7 @@ public class MagicGob : Gob
         gobManager = GameObject.FindObjectOfType<GobManager>();
 
         gobManager.AddGob(this);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -146,6 +152,8 @@ public class MagicGob : Gob
         force = force.normalized * 500f;
 
         rb.AddForce(force);
+        audioSource.clip = wee;
+        audioSource.Play();
     }
 
     public override void EnterAttack()
@@ -183,6 +191,8 @@ public class MagicGob : Gob
         {
             proj.transform.position = transform.position;
         }
+        audioSource.clip = shoot;
+        audioSource.Play();
 
     }
 
