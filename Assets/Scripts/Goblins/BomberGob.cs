@@ -8,7 +8,17 @@ public class BomberGob : Gob
     private CircleCollider2D circleCollider;
     private BoxCollider2D boxCollider;
 
-    [SerializeField] private float range = 1f;
+    [SerializeField] private float range = 2f;
+
+    // --- Target ---
+    private GameObject target;
+
+    public GobManager gobManager;
+    private EnemyManager enemyManager;
+
+    [SerializeField] private GameObject boom;
+
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +27,13 @@ public class BomberGob : Gob
         rb = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+
+        enemyManager = GameObject.FindObjectOfType<EnemyManager>();
+        gobManager = GameObject.FindObjectOfType<GobManager>();
+
+        gobManager.AddGob(this);
+
+        animator = GetComponent<Animator>();    
     }
 
     // Update is called once per frame
@@ -31,9 +48,6 @@ public class BomberGob : Gob
                 UpdateHeld();
                 break;
             case GobState.THROWN:
-                break;
-            case GobState.ATTACK:
-                UpdateAttack();
                 break;
         }
     }
@@ -73,7 +87,16 @@ public class BomberGob : Gob
 
     public override void UpdateIdle()
     {
-
+        for (int i = 0; i < enemyManager.enemies.Count; i++)
+        {
+            Vector3 myPosition = transform.position;
+            if (Vector2.Distance(enemyManager.enemies[i].transform.position, myPosition) <= range)
+            {
+                target = enemyManager.enemies[i].gameObject;
+                EnterAttack();
+                break;
+            }
+        }
     }
 
     public override void EnterHeld()
@@ -111,10 +134,13 @@ public class BomberGob : Gob
     public override void EnterAttack()
     {
         state = GobState.ATTACK;
+        animator.SetBool("explode", true);
+        Death();
     }
 
-    public override void UpdateAttack()
+    public void Death()
     {
-
+        gobManager.RemoveGob(this);
+        Destroy(gameObject, 1.1f);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -9,12 +10,21 @@ public class Health : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private GameObject player;
+
 
     // Start is called before the first frame update
     void Start()
     {
         currHP = MAX_HP;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (player == null )
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+        else
+        {
+            spriteRenderer = player.GetComponent<SpriteRenderer>();
+        }
     }
 
     public void TakeDamage(float damage)
@@ -24,6 +34,7 @@ public class Health : MonoBehaviour
         if (currHP > 0)
         {
             // Damage Flicker
+            StartCoroutine(DamageFlicker());
         }
 
         if (currHP <= 0)
@@ -32,8 +43,39 @@ public class Health : MonoBehaviour
         }
     }
 
+    private IEnumerator DamageFlicker()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+
+        spriteRenderer.color = Color.white;
+    }
+
     public void DeathFromDamage()
     {
-        Destroy(gameObject);
+        if (player == null)
+        {
+            if (GetComponent<EnemyNew>() != null)
+            {
+                GetComponent<EnemyNew>().enemyManager.RemoveEnemy(GetComponent<EnemyNew>());
+            }
+            else if (GetComponent<DaggerGob>() != null)
+            {
+                GetComponent<DaggerGob>().gobManager.RemoveGob(GetComponent<DaggerGob>());
+            }
+            else if (GetComponent<MagicGob>() != null)
+            {
+                GetComponent<MagicGob>().gobManager.RemoveGob(GetComponent<MagicGob>());
+            }
+            else if (GetComponent<TankGob>() != null)
+            {
+                GetComponent<TankGob>().gobManager.RemoveGob(GetComponent<TankGob>());
+            }
+            Destroy(gameObject);
+        }
+        else
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 }
