@@ -23,6 +23,10 @@ public class TankGob : Gob
     public GobManager gobManager;
     private EnemyManager enemyManager;
 
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip wee;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +39,7 @@ public class TankGob : Gob
         gobManager = GameObject.FindObjectOfType<GobManager>();
 
         gobManager.AddGob(this);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -146,6 +151,8 @@ public class TankGob : Gob
         force = force.normalized * 500f;
 
         rb.AddForce(force);
+        audioSource.clip = wee;
+        audioSource.Play();
     }
 
     public override void EnterAttack()

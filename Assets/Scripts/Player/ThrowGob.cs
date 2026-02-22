@@ -82,11 +82,11 @@ public class ThrowGob : MonoBehaviour
 
     private void UpdateActive()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.mouseScrollDelta.y > 0f)
         {
             sack.SwitchGob(true);
             HUDGobDisplay.GetCurrentGob();
-        } else if (Input.GetKeyDown(KeyCode.Q))
+        } else if (Input.mouseScrollDelta.y < 0f)
         {
             sack.SwitchGob(false);
             HUDGobDisplay.GetCurrentGob();
