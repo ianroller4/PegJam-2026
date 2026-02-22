@@ -15,11 +15,15 @@ public class ThrowGob : MonoBehaviour
 
     private PlayerController pc;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip throwSound;
+
     // Start is called before the first frame update
     void Start()
     {
         sack = GetComponent<Sack>();   
         pc = GetComponent<PlayerController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -68,6 +72,8 @@ public class ThrowGob : MonoBehaviour
     {
         if (heldGob != null)
         {
+            audioSource.clip = throwSound;
+            audioSource.Play();
             heldGob.EnterThrown(pc.facingRight);
             heldGob = null;
             throwing = false;
